@@ -1,23 +1,26 @@
 plugins {
+    application
     kotlin("jvm") version "1.6.10"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 dependencies {
-    api("com.github.ben-manes.caffeine:caffeine:2.9.3")
+    api("com.github.ben-manes.caffeine:caffeine:3.0.5")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testImplementation("io.kotest:kotest-assertions-jvm:4.0.7")
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 }
 
-tasks.register<Test>("testGraal") {
-    javaLauncher.set(
-        javaToolchains.launcherFor {
-            languageVersion.set(JavaLanguageVersion.of(17))
-            vendor.set(JvmVendorSpec.GRAAL_VM)
-        }
-    )
+application {
+    mainClass.set("CaffeineEvictKt")
+}
+
+tasks.withType<Jar>() {
+    manifest {
+        attributes["Main-Class"] = "CaffeineEvictKt"
+    }
 }
 
 tasks.register<Test>("test16") {

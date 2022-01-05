@@ -30,4 +30,6 @@ fun main() {
     cache.cleanUp()
 
     Thread.sleep(500)
+
+    println("Foo removed $fooRemoved")
 }
