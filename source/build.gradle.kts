@@ -5,7 +5,8 @@ plugins {
 }
 
 dependencies {
-    api("com.github.ben-manes.caffeine:caffeine:3.0.5")
+    implementation("com.github.ben-manes.caffeine:caffeine:3.0.5")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testImplementation("io.kotest:kotest-assertions-jvm:4.0.7")
