@@ -1,4 +1,5 @@
 FROM openjdk:16
-WORKDIR ../source
-COPY . .
-CMD ["./gradlew", "run"]
+COPY ./source .
+RUN chmod +x ./gradlew
+RUN ./gradlew shadowJar
+CMD ["java", "-jar", "/build/libs/caffeine-issue-all.jar"]
